@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Route::middleware(['auth', 'can:is_admin'])->prefix("/admin")->group(function ()
 
 // Shop
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/shop', [HomeController::class, 'shop']);
+Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/detail', [HomeController::class, 'shopDetail']);
 Route::get('/cart', [CartController::class, 'index']);
 Route::get('/checkout', [CheckoutController::class, 'index']);
