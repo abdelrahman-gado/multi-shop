@@ -75,12 +75,12 @@ class HomeController extends Controller
             } else {
                 $cartProducts[$currentProductId] += 1;
             }
-            
-            // $cartProducts ===> [id1 => quantity1, id2 => quantity2, ... ]
-            
-            Session::put('cart', $cartProducts);
 
-            return response()->json(["url" => "/shop"]);
+            $cartProductsCount = array_reduce($cartProducts, fn ($count, $value) => $count += $value, 0);
+            Session::put('cart', $cartProducts);
+            // $cartProducts ===> [id1 => quantity1, id2 => quantity2, ... ]
+
+            return response()->json(["count" => $cartProductsCount]);
         }
 
         return abort(404);
@@ -93,8 +93,9 @@ class HomeController extends Controller
                 array_push($ids, $request->get('id'));
             }
 
+            $likedListCount = count($ids);
             Session::put('ids', $ids);
-            return response()->json(["url" => "/"]);
+            return response()->json(["count" => $likedListCount]);
         }
 
         return abort(404);

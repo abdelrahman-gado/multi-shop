@@ -287,6 +287,7 @@
     </div>
     <!-- Vendor End -->
 @endsection
+
 @section('scripts')
 <script>
     function addProductToCart(id) {
@@ -294,7 +295,8 @@
             url: "{{ url('/add-product-to-cart') }}",
             data: { id: id },
             success: (data) => {
-                console.log(data);
+                $("#cartspan1").html(data['count']);
+                $("#cartspan2").html(data['count']);
             }
         });
     }
@@ -304,7 +306,8 @@
             url: "{{ url('/add-product-to-likedlist') }}",
             data: { id: id },
             success: (data) => {
-                console.log(data);
+                $("#heartspan1").html(data['count']);
+                $("#heartspan2").html(data['count']);
             }
         });
     }

@@ -204,7 +204,8 @@ function getIsChecked($val, $arrName) {
             url: "{{ url('/add-product-to-cart') }}",
             data: { id: id },
             success: (data) => {
-                location.href = data.url;
+                $("#cartspan1").html(data['count']);
+                $("#cartspan2").html(data['count']);
             }
         });
     }
@@ -214,7 +215,8 @@ function getIsChecked($val, $arrName) {
             url: "{{ url('/add-product-to-likedlist') }}",
             data: { id: id },
             success: (data) => {
-                location.href = data.url;
+                $("#heartspan1").html(data['count']);
+                $("#heartspan2").html(data['count']);
             }
         });
     }

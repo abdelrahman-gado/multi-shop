@@ -71,12 +71,12 @@
                     <a href="" class="btn px-0 ml-2">
                         <i class="fas fa-heart text-dark"></i>
                         <span class="badge text-dark border border-dark rounded-circle"
-                            style="padding-bottom: 2px;">0</span>
+                            style="padding-bottom: 2px;" id="heartspan1">{{ count(session()->get('ids', [])) }}</span>
                     </a>
                     <a href="" class="btn px-0 ml-2">
                         <i class="fas fa-shopping-cart text-dark"></i>
                         <span class="badge text-dark border border-dark rounded-circle"
-                            style="padding-bottom: 2px;">0</span>
+                            style="padding-bottom: 2px;" id="cartspan1">{{ array_reduce(session()->get('cart', []), fn($count, $value) => $count += $value, 0)  }}</span>
                     </a>
                 </div>
             </div>
@@ -156,12 +156,12 @@
                             <a href="" class="btn px-0">
                                 <i class="fas fa-heart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">{{ count(session()->get('ids', [])) }}</span>
+                                    style="padding-bottom: 2px;" id="heartspan2">{{ count(session()->get('ids', [])) }}</span>
                             </a>
                             <a href="" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">{{ array_reduce(session()->get('cart', []), fn($count, $value) => $count += $value, 0)  }}</span>
+                                    style="padding-bottom: 2px;" id="cartspan2">{{ array_reduce(session()->get('cart', []), fn($count, $value) => $count += $value, 0)  }}</span>
                             </a>
                         </div>
                     </div>
