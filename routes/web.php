@@ -45,8 +45,8 @@ Route::post('/contact', [ContactController::class, 'sendMessageViaEmail']);
 Route::get('/wishlist', [WishlistController::class, 'index']);
 Route::get('/remove-product-from-wishlist', [WishlistController::class, 'removeProductFromWishList']);
 
-Route::get('/add-product-to-cart', [HomeController::class, 'addProductToCart']);
-Route::get('/add-product-to-likedlist', [HomeController::class, 'addProductToLikedList']);
+Route::get('/add-product-to-cart', [CartController::class, 'addProductToCart']);
+Route::get('/add-product-to-likedlist', [WishlistController::class, 'addProductToWishList']);
 
 
 Route::get('/decrease-quantity', [CartController::class, 'decreaseProductQuantity']);

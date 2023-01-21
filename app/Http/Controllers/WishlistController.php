@@ -45,4 +45,20 @@ class WishlistController extends Controller
 
         return response()->json(["id" => $id, "count" => $wishListCount]);
     }
+
+    function addProductToWishList(Request $request)
+    {
+        if ($request->has('id')) {
+            $ids = Session::get('ids', []);
+            if (!in_array($request->get('id'), $ids)) {
+                array_push($ids, $request->get('id'));
+            }
+
+            $likedListCount = count($ids);
+            Session::put('ids', $ids);
+            return response()->json(["count" => $likedListCount]);
+        }
+
+        return abort(404);
+    }
 }
