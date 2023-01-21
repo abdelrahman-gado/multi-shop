@@ -13,6 +13,13 @@
     </div>
     <!-- Breadcrumb End -->
 
+    @if ($message = Session::get('success'))
+        <div class="container alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-exclamation-triangle"></i> Success!</h5>
+            {{ $message }}
+        </div>
+    @endif
 
     <!-- Contact Start -->
     <div class="container-fluid">
@@ -25,19 +32,22 @@
                     <form method="POST" action="{{ url('/contact') }}">
                         @csrf
                         <div class="control-group mb-2">
-                            <input type="text" class="form-control" name="name" placeholder="Your Name" value="{{ old('name') }}" required/>
+                            <input type="text" class="form-control" name="name" placeholder="Your Name"
+                                value="{{ old('name') }}" required />
                             @error('name')
                                 <p class="help-block text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="control-group mb-2">
-                            <input type="email" class="form-control" name="email" placeholder="Your Email" value="{{ old('email') }}" required/>
+                            <input type="email" class="form-control" name="email" placeholder="Your Email"
+                                value="{{ old('email') }}" required />
                             @error('email')
                                 <p class="help-block text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="control-group mb-2">
-                            <input type="text" class="form-control" name="subject" placeholder="Subject" value="{{ old('subject') }}" required/>
+                            <input type="text" class="form-control" name="subject" placeholder="Subject"
+                                value="{{ old('subject') }}" required />
                             @error('subject')
                                 <p class="help-block text-danger">{{ $message }}</p>
                             @enderror
