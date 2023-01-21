@@ -10,6 +10,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,8 @@ Route::get('/cart', [CartController::class, 'index']);
 Route::get('/checkout', [CheckoutController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact', [ContactController::class, 'sendMessageViaEmail']);
+Route::get('/wishlist', [WishlistController::class, 'index']);
+Route::get('/remove-product-from-wishlist', [WishlistController::class, 'removeProductFromWishList']);
 
 Route::get('/add-product-to-cart', [HomeController::class, 'addProductToCart']);
 Route::get('/add-product-to-likedlist', [HomeController::class, 'addProductToLikedList']);
