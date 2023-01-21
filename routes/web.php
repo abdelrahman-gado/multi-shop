@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 
@@ -37,7 +38,8 @@ Route::get('/shop', [HomeController::class, 'shop']);
 Route::get('/detail', [HomeController::class, 'shopDetail']);
 Route::get('/cart', [CartController::class, 'index']);
 Route::get('/checkout', [CheckoutController::class, 'index']);
-Route::get('/contact', [HomeController::class, 'contact']);
+Route::get('/contact', [ContactController::class, 'index']);
+Route::post('/contact', [ContactController::class, 'sendMessageViaEmail']);
 
 Route::get('/add-product-to-cart', [HomeController::class, 'addProductToCart']);
 Route::get('/add-product-to-likedlist', [HomeController::class, 'addProductToLikedList']);

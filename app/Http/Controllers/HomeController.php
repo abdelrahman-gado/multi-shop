@@ -66,12 +66,6 @@ class HomeController extends Controller
     }
 
 
-    function contact() {
-        return view('shop.contact');
-    }
-
-
-
     function addProductToCart(Request $request) {
         if ($request->has('id')) {
             $cartProducts = Session::get('cart', []);
