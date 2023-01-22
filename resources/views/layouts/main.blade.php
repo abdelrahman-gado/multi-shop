@@ -41,29 +41,14 @@
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My
-                            Account</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">{{ auth()->user() ? "Welcome " . auth()->user()->name : "My Account"; }}</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Sign in</button>
-                            <button class="dropdown-item" type="button">Sign up</button>
-                        </div>
-                    </div>
-                    <div class="btn-group mx-2">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle"
-                            data-toggle="dropdown">USD</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">EUR</button>
-                            <button class="dropdown-item" type="button">GBP</button>
-                            <button class="dropdown-item" type="button">CAD</button>
-                        </div>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle"
-                            data-toggle="dropdown">EN</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">FR</button>
-                            <button class="dropdown-item" type="button">AR</button>
-                            <button class="dropdown-item" type="button">RU</button>
+                            <a class="dropdown-item" href="{{ url('/login') }}" {{ auth()->user() ? "hidden" : "" }}>Sign in</a>
+                            <a class="dropdown-item" href="{{ url('/register') }}" {{ auth()->user() ? "hidden" : "" }}>Sign up</a>
+                            <form action="{{ url('/logout') }}" method="POST">
+                                @csrf
+                                <button class="dropdown-item" type="submit" {{ auth()->user() ? "" : "hidden" }}>Logout</button>
+                            </form>
                         </div>
                     </div>
                 </div>
