@@ -39,7 +39,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/detail', [HomeController::class, 'shopDetail']);
 Route::get('/cart', [CartController::class, 'index']);
-Route::get('/checkout', [CheckoutController::class, 'index']);
+Route::middleware(['auth'])->get('/checkout', [CheckoutController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact', [ContactController::class, 'sendMessageViaEmail']);
 Route::get('/wishlist', [WishlistController::class, 'index']);
