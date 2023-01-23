@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('mobile_no');
             $table->string('address1');
-            $table->string('address2')->default('');
+            $table->string('address2')->nullable(true);
             $table->string('country')->default('egypt');
             $table->string('city');
             $table->string('state');
