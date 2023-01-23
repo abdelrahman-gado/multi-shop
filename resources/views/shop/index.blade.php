@@ -1,5 +1,13 @@
 @extends('layouts.main')
 @section('content')
+    @if ($message = Session::get('success'))
+        <div class="container alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-exclamation-triangle"></i> Success!</h5>
+            {{ $message }}
+        </div>
+    @endif
+
     <!-- Carousel Start -->
     <div class="container-fluid mb-3">
         <div class="row px-xl-5">
@@ -135,7 +143,6 @@
     </div>
     <!-- Categories End -->
 
-
     <!-- Products Start -->
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured
@@ -149,9 +156,11 @@
                                 <img class="img-fluid w-100" src="{{ asset('storage/' . $product['image']) }}"
                                     alt="">
                                 <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" onclick="addProductToCart({{ $product['id'] }})"><i
+                                    <a class="btn btn-outline-dark btn-square"
+                                        onclick="addProductToCart({{ $product['id'] }})"><i
                                             class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" onclick="addProductToLikedList({{ $product['id'] }})"><i
+                                    <a class="btn btn-outline-dark btn-square"
+                                        onclick="addProductToLikedList({{ $product['id'] }})"><i
                                             class="far fa-heart"></i></a>
                                 </div>
                             </div>
@@ -213,7 +222,7 @@
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Recent
                 Products</span></h2>
         <div class="row px-xl-5">
-             @foreach ($products as $product)
+            @foreach ($products as $product)
                 @if ($product['is_recent'])
                     <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                         <div class="product-item bg-light mb-4">
@@ -221,9 +230,11 @@
                                 <img class="img-fluid w-100" src="{{ asset('storage/' . $product['image']) }}"
                                     alt="">
                                 <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" onclick="addProductToCart({{ $product['id'] }})"><i
+                                    <a class="btn btn-outline-dark btn-square"
+                                        onclick="addProductToCart({{ $product['id'] }})"><i
                                             class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" onclick="addProductToLikedList({{ $product['id'] }})"><i
+                                    <a class="btn btn-outline-dark btn-square"
+                                        onclick="addProductToLikedList({{ $product['id'] }})"><i
                                             class="far fa-heart"></i></a>
                                 </div>
                             </div>
@@ -289,27 +300,31 @@
 @endsection
 
 @section('scripts')
-<script>
-    function addProductToCart(id) {
-        $.ajax({
-            url: "{{ url('/add-product-to-cart') }}",
-            data: { id: id },
-            success: (data) => {
-                $("#cartspan1").html(data['count']);
-                $("#cartspan2").html(data['count']);
-            }
-        });
-    }
+    <script>
+        function addProductToCart(id) {
+            $.ajax({
+                url: "{{ url('/add-product-to-cart') }}",
+                data: {
+                    id: id
+                },
+                success: (data) => {
+                    $("#cartspan1").html(data['count']);
+                    $("#cartspan2").html(data['count']);
+                }
+            });
+        }
 
-    function addProductToLikedList(id) {
-        $.ajax({
-            url: "{{ url('/add-product-to-likedlist') }}",
-            data: { id: id },
-            success: (data) => {
-                $("#heartspan1").html(data['count']);
-                $("#heartspan2").html(data['count']);
-            }
-        });
-    }
-</script>
+        function addProductToLikedList(id) {
+            $.ajax({
+                url: "{{ url('/add-product-to-likedlist') }}",
+                data: {
+                    id: id
+                },
+                success: (data) => {
+                    $("#heartspan1").html(data['count']);
+                    $("#heartspan2").html(data['count']);
+                }
+            });
+        }
+    </script>
 @endsection
