@@ -17,7 +17,8 @@
 
     <!-- Checkout Start -->
     <div class="container-fluid">
-        <div class="row px-xl-5">
+        <form class="row px-xl-5" action="{{ url('/checkout') }}" method="POST">
+            @csrf
             <div class="col-lg-8">
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing
                         Address</span></h5>
@@ -25,113 +26,77 @@
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="John">
+                            <input class="form-control" type="text" name="firstname" placeholder="John" value="{{ old('firstname', auth()->user()->name) }}" required>
+                            @error('firstname')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Last Name</label>
-                            <input class="form-control" type="text" placeholder="Doe">
+                            <input class="form-control" name="lastname" type="text" placeholder="Doe" value="{{ old("lastname") }}">
+                            @error('lastname')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
+                            <input class="form-control" type="email" name="email" placeholder="example@email.com" value="{{ old("lastname", auth()->user()->email) }}" required>
+                            @error('email')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
+                            <input class="form-control" type="text" name="mobile_no" placeholder="+123 456 789" value="{{ old('mobile_no') }}" required>
+                            @error('mobile_no')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Address Line 1</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <input class="form-control" type="text" name="address1" placeholder="123 Street" value="{{ old('address1') }}" required>
+                            @error('address1')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Address Line 2</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <input class="form-control" type="text" name="address2" placeholder="123 Street" value="{{ old('address2') }}">
+                            @error('address2')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Country</label>
-                            <select class="custom-select">
-                                <option selected>Egypt</option>
-                                <option>USA</option>
-                                <option>Algeria</option>
+                            <select class="custom-select" name="country">
+                                <option value="egypt" {{ old('country') === "egypt" ? "selected" : ""  }}>Egypt</option>
+                                <option value="usa" {{ old('country') === "usa" ? "selected" : ""  }}>USA</option>
+                                <option value="algeria" {{ old('country') === "algeria" ? "selected" : ""  }}>Algeria</option>
                             </select>
+                            @error('country')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-md-6 form-group">
                             <label>City</label>
-                            <input class="form-control" type="text" placeholder="New York">
+                            <input class="form-control" type="text" name="city" placeholder="New York" value="{{ old('city') }}" required>
+                            @error('city')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-md-6 form-group">
                             <label>State</label>
-                            <input class="form-control" type="text" placeholder="New York">
+                            <input class="form-control" type="text" name="state" placeholder="New York" value="{{ old('state') }}" required>
+                            @error('state')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-md-6 form-group">
                             <label>ZIP Code</label>
-                            <input class="form-control" type="text" placeholder="123">
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="newaccount">
-                                <label class="custom-control-label" for="newaccount">Create an account</label>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="shipto">
-                                <label class="custom-control-label" for="shipto" data-toggle="collapse"
-                                    data-target="#shipping-address">Ship to different address</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="collapse mb-5" id="shipping-address">
-                    <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Shipping
-                            Address</span></h5>
-                    <div class="bg-light p-30">
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <label>First Name</label>
-                                <input class="form-control" type="text" placeholder="John">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Last Name</label>
-                                <input class="form-control" type="text" placeholder="Doe">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>E-mail</label>
-                                <input class="form-control" type="text" placeholder="example@email.com">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Mobile No</label>
-                                <input class="form-control" type="text" placeholder="+123 456 789">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Address Line 1</label>
-                                <input class="form-control" type="text" placeholder="123 Street">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Address Line 2</label>
-                                <input class="form-control" type="text" placeholder="123 Street">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Country</label>
-                                <select class="custom-select">
-                                    <option selected>United States</option>
-                                    <option>Afghanistan</option>
-                                    <option>Albania</option>
-                                    <option>Algeria</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>City</label>
-                                <input class="form-control" type="text" placeholder="New York">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>State</label>
-                                <input class="form-control" type="text" placeholder="New York">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>ZIP Code</label>
-                                <input class="form-control" type="text" placeholder="123">
-                            </div>
+                            <input class="form-control" type="text" name="zip_code" placeholder="123" value="{{ old('zip_code') }}" required>
+                            @error('zip_code')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -172,27 +137,27 @@
                     <div class="bg-light p-30">
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                <input type="radio" class="custom-control-input" name="payment" id="paypal" value="paypal" {{ old('payment') === "paypal" ? "checked" : "" }}>
                                 <label class="custom-control-label" for="paypal">Paypal</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                                <input type="radio" class="custom-control-input" name="payment" id="directcheck" value="direct_check" {{ old('payment') === "direct_check" ? "checked" : "" }}>
                                 <label class="custom-control-label" for="directcheck">Direct Check</label>
                             </div>
                         </div>
                         <div class="form-group mb-4">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer" value="bank_transfer" {{ old('payment') === "bank_transfer" ? "checked" : "" }}>
                                 <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
                             </div>
                         </div>
-                        <button class="btn btn-block btn-primary font-weight-bold py-3">Place Order</button>
+                        <button class="btn btn-block btn-primary font-weight-bold py-3" type="submit">Place Order</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     <!-- Checkout End -->
 @endsection
