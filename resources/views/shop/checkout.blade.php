@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="email" name="email" placeholder="example@email.com" value="{{ old("lastname", auth()->user()->email) }}" required>
+                            <input class="form-control" type="email" name="email" placeholder="example@email.com" value="{{ old("email", auth()->user()->email) }}" required>
                             @error('email')
                                 <p class="alert alert-danger">{{ $message }}</p>
                             @enderror
