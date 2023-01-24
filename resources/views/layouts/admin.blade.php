@@ -49,6 +49,12 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ url('/admin') }}" class="nav-link">Home</a>
                 </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <form action="{{ url('/logout') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-link nav-link">Logout</button>
+                    </form>
+                </li>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -69,7 +75,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="" class="d-block">Abdelrahman Magdy Gado</a>
+                        <a href="" class="d-block">{{ auth()->user()->name }}</a>
                     </div>
                 </div>
 
@@ -91,7 +97,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="/admin/products" class="nav-link">
+                            <a href="{{ url('/admin/products') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Products
@@ -100,7 +106,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ url('admin/orders') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Orders
@@ -109,7 +115,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ url('admin/users') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Users
@@ -135,23 +141,6 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Logout
-                                </p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Login
-                                </p>
-                            </a>
-                        </li>
 
                     </ul>
                 </nav>
