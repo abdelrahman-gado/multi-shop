@@ -17,6 +17,9 @@ class CheckoutController extends Controller
     function index()
     {
         $cartProducts = Session::get('cart', []);
+        if (count($cartProducts) === 0) {
+            return redirect("/cart")->with("error", "Nothing in cart to submit as an order");
+        }
         $products = $this->mapSessionProducts($cartProducts);
         $subTotal = $this->calculateSubTotal($cartProducts);
         $shipping = $this->calculateShipping($cartProducts);
