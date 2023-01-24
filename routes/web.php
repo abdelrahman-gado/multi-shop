@@ -10,6 +10,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
 
 /*
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'can:is_admin'])->prefix("/admin")->group(function ()
     Route::get('/', [AdminController::class, 'index']);
     Route::resource('categories', CategoriesController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('users', UserController::class);
 });
 
 
