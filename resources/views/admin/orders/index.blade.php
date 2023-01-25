@@ -56,13 +56,6 @@
                                             View
                                         </a>
 
-                                        <a class="btn btn-info mx-2"
-                                            href="{{ url('/admin/orders/' . $order['id'] . '/edit') }}">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Edit
-                                        </a>
-
                                         <form style="display: inline" class="mx-2"
                                             action="{{ url('/admin/orders/' . $order['id']) }}" method="POST">
                                             @csrf
