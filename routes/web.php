@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DetailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -41,7 +42,7 @@ Route::middleware(['auth', 'can:is_admin'])->prefix("/admin")->group(function ()
 // Shop
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
-Route::get('/detail', [HomeController::class, 'shopDetail']);
+Route::get('/detail', [DetailController::class, 'index']);
 Route::get('/cart', [CartController::class, 'index']);
 Route::middleware(['auth'])->get('/checkout', [CheckoutController::class, 'index']);
 Route::middleware(['auth'])->post('/checkout', [CheckoutController::class, 'createOrder']);

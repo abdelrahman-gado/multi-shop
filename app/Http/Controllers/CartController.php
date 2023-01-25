@@ -79,9 +79,9 @@ class CartController extends Controller
             $cartProducts = Session::get('cart', []);
             $currentProductId = (int) $request->get('id');
             if (!array_key_exists($currentProductId, $cartProducts)) {
-                $cartProducts[$currentProductId] =  1;
+                $cartProducts[$currentProductId] =  $request->get('quantity', 1);
             } else {
-                $cartProducts[$currentProductId] += 1;
+                $cartProducts[$currentProductId] += $request->get('quantity', 1);
             }
 
             $cartProductsCount = array_reduce($cartProducts, fn ($count, $value) => $count += $value, 0);
