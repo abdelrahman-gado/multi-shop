@@ -50,21 +50,21 @@
                               <td>${{ $order['shipping'] }}</td>
                               <td>${{ $order['total_price'] }}</td>
                               <td>
-                                        <a class="btn btn-primary mx-2" href="{{ url('/admin/products/' . $order['id']) }}">
+                                        <a class="btn btn-primary mx-2" href="{{ url('/admin/orders/' . $order['id']) }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
 
                                         <a class="btn btn-info mx-2"
-                                            href="{{ url('/admin/products/' . $order['id'] . '/edit') }}">
+                                            href="{{ url('/admin/orders/' . $order['id'] . '/edit') }}">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
 
                                         <form style="display: inline" class="mx-2"
-                                            action="{{ url('/admin/products/' . $order['id']) }}" method="POST">
+                                            action="{{ url('/admin/orders/' . $order['id']) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
