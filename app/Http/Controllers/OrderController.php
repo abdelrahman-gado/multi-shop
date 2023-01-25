@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -47,7 +48,12 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $orderId = $order['id'];
+
+        // eager loading
+        $orderDetails = OrderDetail::with('product', 'product.category', 'product.size', 'product.color')->where('order_id', $orderId)->get();
+        return view('admin.orders.show', compact('order', 'orderDetails'));
     }
 
     /**
