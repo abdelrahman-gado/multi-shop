@@ -126,7 +126,6 @@
                         <div class="navbar-nav mr-auto py-0">
                             <a href="{{ url('/') }}" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
                             <a href="{{ url('/shop') }}" class="nav-item nav-link {{ request()->is('shop') ? 'active' : '' }}">Shop</a>
-                            <a href="{{ url('/detail') }}" class="nav-item nav-link {{ request()->is('detail') ? 'active' : '' }}">Shop Detail</a>
                             <div class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle {{ request()->is('cart') || request()->is('checkout') ? 'active' : '' }}" data-toggle="dropdown">Pages <i
                                         class="fa fa-angle-down mt-1"></i></a>
