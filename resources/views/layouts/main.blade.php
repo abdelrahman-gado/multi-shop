@@ -33,7 +33,7 @@
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center h-100">
                     <a class="text-body mr-3" href="">About</a>
-                    <a class="text-body mr-3" href="">Contact</a>
+                    <a class="text-body mr-3" href="{{ url('/contact') }}">Contact</a>
                     <a class="text-body mr-3" href="">Help</a>
                     <a class="text-body mr-3" href="">FAQs</a>
                 </div>
@@ -107,7 +107,7 @@
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
                         @foreach ($categories as $category)
-                            <a href="{{ url('/shop?category_id=' . $category['id']) }}" class="nav-item nav-link">{{ $category['name'] }}</a>
+                            <a href="{{ url('/shop?category_id=' . $category['id']) }}" class="nav-item nav-link {{ request()->input('category_id') == $category['id'] ? 'active' : '' }}">{{ $category['name'] }}</a>
                         @endforeach
                     </div>
                 </nav>
@@ -122,20 +122,20 @@
                         data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="collapse navbar-collapse justify-content-between " id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
-                            <a href="{{ url('/shop') }}" class="nav-item nav-link">Shop</a>
-                            <a href="{{ url('/detail') }}" class="nav-item nav-link">Shop Detail</a>
+                            <a href="{{ url('/') }}" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
+                            <a href="{{ url('/shop') }}" class="nav-item nav-link {{ request()->is('shop') ? 'active' : '' }}">Shop</a>
+                            <a href="{{ url('/detail') }}" class="nav-item nav-link {{ request()->is('detail') ? 'active' : '' }}">Shop Detail</a>
                             <div class="nav-item dropdown">
-                                <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i
+                                <a class="nav-link dropdown-toggle {{ request()->is('cart') || request()->is('checkout') ? 'active' : '' }}" data-toggle="dropdown">Pages <i
                                         class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="{{ url('/cart') }}" class="dropdown-item">Shopping Cart</a>
-                                    <a href="{{ url('/checkout') }}" class="dropdown-item">Checkout</a>
+                                    <a href="{{ url('/cart') }}" class="dropdown-item {{ request()->is('cart') ? 'active' : '' }}">Shopping Cart</a>
+                                    <a href="{{ url('/checkout') }}" class="dropdown-item {{ request()->is('checkout') ? 'active' : '' }}">Checkout</a>
                                 </div>
                             </div>
-                            <a href="{{ url('/contact') }}" class="nav-item nav-link">Contact</a>
+                            <a href="{{ url('/contact') }}" class="nav-item nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="{{ url('/wishlist') }}" class="btn px-0">
