@@ -47,7 +47,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ url('/admin') }}" class="nav-link">Home</a>
+                    <a href="{{ url('/admin') }}" class="nav-link {{ request()->is('admin') ? 'active' : '' }}">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <form action="{{ url('/logout') }}" method="POST">
@@ -88,7 +88,7 @@
                with font-awesome or any other icon font library -->
 
                         <li class="nav-item">
-                            <a href="{{ url('/admin/categories') }}" class="nav-link">
+                            <a href="{{ url('/admin/categories') }}" class="nav-link {{ request()->is('admin/categories') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Categories
@@ -97,7 +97,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('/admin/products') }}" class="nav-link">
+                            <a href="{{ url('/admin/products') }}" class="nav-link {{ request()->is('admin/products') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Products
@@ -106,7 +106,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('admin/orders') }}" class="nav-link">
+                            <a href="{{ url('admin/orders') }}" class="nav-link {{ request()->is('admin/orders') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Orders
@@ -115,7 +115,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('admin/users') }}" class="nav-link">
+                            <a href="{{ url('admin/users') }}" class="nav-link {{ request()->is('admin/users') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Users
@@ -124,7 +124,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ url('admin/sizes') }}" class="nav-link {{ request()->is('admin/sizes') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Sizes
@@ -133,7 +133,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ url('admin/colors') }}" class="nav-link {{ request()->is('admin/colors') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Colors
