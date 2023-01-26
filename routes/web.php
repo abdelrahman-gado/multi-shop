@@ -43,6 +43,7 @@ Route::middleware(['auth', 'can:is_admin'])->prefix("/admin")->group(function ()
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/detail', [DetailController::class, 'index']);
+Route::post('/detail', [DetailController::class, 'postReview']);
 Route::get('/cart', [CartController::class, 'index']);
 Route::middleware(['auth'])->get('/checkout', [CheckoutController::class, 'index']);
 Route::middleware(['auth'])->post('/checkout', [CheckoutController::class, 'createOrder']);
