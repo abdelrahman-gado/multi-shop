@@ -25,7 +25,7 @@
                             <img class="w-100 h-100" src="{{ asset('storage/' . $product['image']) }}" alt="Image">
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -172,7 +172,8 @@
                             @if (auth()->user())
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h4 class="mb-4">1 review for "Product Name"</h4>
+                                        <h4 class="mb-4">{{ $product['rating_count'] }} review for
+                                            {{ $product['name'] }}</h4>
                                         <div class="media mb-4">
                                             <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
                                                 style="width: 45px;">
@@ -195,28 +196,32 @@
                                         <h4 class="mb-4">Leave a review</h4>
                                         <small>Your email address will not be published. Required fields are marked
                                             *</small>
-                                        <div class="d-flex my-3">
-                                            <p class="mb-0 mr-2">Your Rating * :</p>
-                                            <div class="text-primary">
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
+                                        <form action="{{ url('/detail?id=' . $product['id']) }}" method="POST">
+                                            @csrf
+                                            <div class="my-3 form-group">
+                                                <label class="mb-0 mr-2">Your Rating * :</label>
+                                                <input type="number" class="form-control flex-grow-1" id="rating" name="rating"
+                                                    min="0" max="5" step="0.5" onchange="showRating()" value="0" required>
+                                                <div class="text-primary" id="div-rating">
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <form>
+
                                             <div class="form-group">
                                                 <label for="message">Your Review *</label>
-                                                <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                                <textarea id="message" cols="30" rows="5" class="form-control" name="review" required>{{ old('review') }}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="name">Your Name *</label>
-                                                <input type="text" class="form-control" id="name">
+                                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name', auth()->user()->name) }}" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="email">Your Email *</label>
-                                                <input type="email" class="form-control" id="email">
+                                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email', auth()->user()->email) }}" required>
                                             </div>
                                             <div class="form-group mb-0">
                                                 <input type="submit" value="Leave Your Review"
@@ -258,7 +263,8 @@
                                     <a class="btn btn-outline-dark btn-square"
                                         onclick="addProductToCart({{ $carouselProduct['id'] }})"><i
                                             class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" onclick="addProductToLikedList({{ $carouselProduct['id'] }})"><i
+                                    <a class="btn btn-outline-dark btn-square"
+                                        onclick="addProductToLikedList({{ $carouselProduct['id'] }})"><i
                                             class="far fa-heart"></i></a>
                                 </div>
                             </div>
@@ -315,6 +321,22 @@
                     $("#heartspan2").html(data['count']);
                 }
             });
+        }
+
+        function showRating() {
+            const ratingValue = parseFloat($("#rating").val());
+            const divRating = $("#div-rating");
+            divRating.html('');
+            for (let i of [1, 2, 3, 4, 5]) {
+                if (ratingValue >= i) {
+                    divRating.append('<i class="fas fa-star"></i>');
+                } else if (Math.abs(ratingValue - i) == 0.5) {
+                    divRating.append('<i class="fas fa-star-half-alt"></i>');
+                } else {
+                    divRating.append('<i class="far fa-star"></i>');
+                }
+            }
+
         }
     </script>
 @endsection
