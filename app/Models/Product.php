@@ -27,7 +27,7 @@ class Product extends Model
     ];
 
     public $timestamps = false;
-    protected $guarded = ['id', 'rating', 'rating_count'];
+    protected $guarded = ['id'];
 
     public function category()
     {
