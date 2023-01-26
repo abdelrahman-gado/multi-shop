@@ -94,9 +94,9 @@
                             <h5>Total</h5>
                             <h5 id="total">{{ number_format($total, 2) }}</h5>
                         </div>
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">
+                        <a href="{{ url('/checkout') }}" class="btn btn-block btn-primary font-weight-bold my-3 py-3">
                             Proceed To Checkout
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
