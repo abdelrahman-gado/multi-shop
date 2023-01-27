@@ -17,7 +17,8 @@ class DetailController extends Controller
         $products = Product::all();
         $colors = Color::all();
         $sizes = Size::all();
-        return view('shop.detail', compact('product', 'sizes', 'colors', 'products'));
+        $reviews = Review::where('product_id', $id)->with('user')->get();
+        return view('shop.detail', compact('product', 'sizes', 'colors', 'products', 'reviews'));
     }
 
     function postReview(Request $request) {
@@ -51,7 +52,7 @@ class DetailController extends Controller
         // calculation process of the rating and rating count for specific product.
         $product = Product::findOrFail($productId);
         $product['rating_count'] = $productReviewsCount;
-        $product['rating'] = floor($productTotalRating * 2) / 2; // round down to nearest half integer
+        $product['rating'] = floor(($productTotalRating / $productReviewsCount) * 2) / 2; // get avergae rating and round it down to nearest half integer
         $product->save();
 
         return redirect("/detail?id=" . $productId)->with('success', 'your review is added successfully');
