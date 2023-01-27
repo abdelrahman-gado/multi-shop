@@ -14,7 +14,7 @@ class DetailController extends Controller
     function index(Request $request) {
         $id = $request->get('id');
         $product = Product::findOrFail($id);
-        $products = Product::all();
+        $products = Product::where('category_id', $product->category_id)->get();
         $colors = Color::all();
         $sizes = Size::all();
         $reviews = Review::where('product_id', $id)->with('user')->get();
