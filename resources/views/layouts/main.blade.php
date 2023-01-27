@@ -175,34 +175,30 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-secondary mb-2" href="{{ url('/') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our
+                            <a class="text-secondary mb-2" href="{{ url('/shop') }}"><i class="fa fa-angle-right mr-2"></i>Our
                                 Shop</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop
-                                Detail</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-secondary mb-2" href="{{ url('/cart') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-secondary mb-2" href="{{ url('/checkout') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact
+                            <a class="text-secondary" href="{{ url('/contact') }}"><i class="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">My Account</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-secondary mb-2" href="{{ url('/') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our
+                            <a class="text-secondary mb-2" href="{{ url('/shop') }}"><i class="fa fa-angle-right mr-2"></i>Our
                                 Shop</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop
-                                Detail</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-secondary mb-2" href="{{ url('/cart') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-secondary mb-2" href="{{ url('/checkout') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact
+                            <a class="text-secondary" href="{{ url('/contact') }}"><i class="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>
                         </div>
                     </div>
