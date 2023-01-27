@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\SizeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
 
@@ -36,6 +37,7 @@ Route::middleware(['auth', 'can:is_admin'])->prefix("/admin")->group(function ()
     Route::resource('products', ProductController::class);
     Route::resource('users', UserController::class);
     Route::resource('orders', OrderController::class);
+    Route::resource('sizes', SizeController::class);
 });
 
 

@@ -9,6 +9,8 @@ class Size extends Model
 {
     use HasFactory;
 
+    public const PAGINATION_COUNT = 5;
+    
     public $timestamps = false;
     protected $guarded = ['id'];
 }
