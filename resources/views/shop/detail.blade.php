@@ -8,7 +8,7 @@
             {{ $message }}
         </div>
     @endif
-    
+
     <!-- Breadcrumb Start -->
     <div class="container-fluid">
         <div class="row px-xl-5">
@@ -42,7 +42,10 @@
                 <div class="h-100 bg-light p-30">
                     <h3>{{ $product['name'] }}</h3>
                     <div class="d-flex mb-3">
-                        @include('partials.stars', ["rating" => $product['rating'], "rating_count" => $product['rating_count']])
+                        @include('partials.stars', [
+                            'rating' => $product['rating'],
+                            'rating_count' => $product['rating_count'],
+                        ])
                     </div>
                     <h3 class="font-weight-semi-bold mb-4">${{ $product->getPriceAfterDiscount() }}</h3>
                     <p class="mb-4">{{ $product['description'] }}</p>
@@ -177,12 +180,15 @@
                                         <h4 class="mb-4">{{ $product['rating_count'] }} review for
                                             {{ $product['name'] }}</h4>
                                         <div class="d-flex flex-column media mb-4">
-                                            @foreach($reviews as $review)
-                                            <div class="media-body mb-2">
-                                                <h6>{{ $review->user->name }}<small> - <i>{{ $review->getFormattedDateTime() }}</i></small></h6>
-                                                @include('partials.review-stars', ["rating" => $review->rating])
-                                                <p>{{ $review['reveiw'] }}</p>
-                                            </div>
+                                            @foreach ($reviews as $review)
+                                                <div class="media-body mb-2">
+                                                    <h6>{{ $review->user->name }}<small> -
+                                                            <i>{{ $review->getFormattedDateTime() }}</i></small></h6>
+                                                    @include('partials.review-stars', [
+                                                        'rating' => $review->rating,
+                                                    ])
+                                                    <p>{{ $review['reveiw'] }}</p>
+                                                </div>
                                             @endforeach
                                         </div>
                                     </div>
@@ -194,8 +200,9 @@
                                             @csrf
                                             <div class="my-3 form-group">
                                                 <label class="mb-0 mr-2">Your Rating * :</label>
-                                                <input type="number" class="form-control flex-grow-1" id="rating" name="rating"
-                                                    min="0" max="5" step="0.5" onchange="showRating()" value="0" required>
+                                                <input type="number" class="form-control flex-grow-1" id="rating"
+                                                    name="rating" min="0" max="5" step="0.5"
+                                                    onchange="showRating()" value="0" required>
                                                 <div class="text-primary" id="div-rating">
                                                     <i class="far fa-star"></i>
                                                     <i class="far fa-star"></i>
@@ -211,11 +218,13 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="name">Your Name *</label>
-                                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name', auth()->user()->name) }}" required>
+                                                <input type="text" class="form-control" id="name" name="name"
+                                                    value="{{ old('name', auth()->user()->name) }}" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="email">Your Email *</label>
-                                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email', auth()->user()->email) }}" required>
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                    value="{{ old('email', auth()->user()->email) }}" required>
                                             </div>
                                             <div class="form-group mb-0">
                                                 <input type="submit" value="Leave Your Review"
@@ -248,37 +257,8 @@
         <div class="row px-xl-5">
             <div class="col">
                 <div class="owl-carousel related-carousel">
-                    @foreach ($products as $carouselProduct)
-                        <div class="product-item bg-light">
-                            <div class="product-img position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="{{ 'storage/' . $carouselProduct['image'] }}"
-                                    alt="">
-                                <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square"
-                                        onclick="addProductToCart({{ $carouselProduct['id'] }})"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square"
-                                        onclick="addProductToLikedList({{ $carouselProduct['id'] }})"><i
-                                            class="far fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate"
-                                    href="{{ url('/detail?id=' . $carouselProduct['id']) }}">{{ $carouselProduct['name'] }}</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>${{ $carouselProduct->getPriceAfterDiscount() }}</h5>
-                                    <h6 class="text-muted ml-2"><del>${{ $carouselProduct['price'] }}</del></h6>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small>({{ $carouselProduct['rating_count'] }})</small>
-                                </div>
-                            </div>
-                        </div>
+                    @foreach ($products as $product)
+                        @include('partials.product')
                     @endforeach
                 </div>
             </div>

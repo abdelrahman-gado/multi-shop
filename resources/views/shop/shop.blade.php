@@ -153,7 +153,9 @@ function getIsChecked($val, $arrName) {
                         </div>
 
                         @foreach ($products as $product)
-                            @include('partials.product')
+                            <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                                @include('partials.product')
+                            </div>
                         @endforeach
                         <div class="col-12">
                             {!! $products->appends(request()->except('page'))->links() !!}

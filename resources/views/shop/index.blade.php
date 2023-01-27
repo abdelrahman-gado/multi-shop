@@ -150,7 +150,9 @@
         <div class="row px-xl-5">
             @foreach ($products as $product)
                 @if ($product['is_featured'])
-                    @include('partials.product')
+                    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                        @include('partials.product')
+                    </div>
                 @endif
             @endforeach
         </div>
@@ -193,7 +195,9 @@
         <div class="row px-xl-5">
             @foreach ($products as $product)
                 @if ($product['is_recent'])
-                    @include('partials.product')
+                    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                        @include('partials.product')
+                    </div>
                 @endif
             @endforeach
         </div>
