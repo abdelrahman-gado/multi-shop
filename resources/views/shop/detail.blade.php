@@ -1,5 +1,14 @@
 @extends('layouts.main')
 @section('content')
+
+    @if ($message = Session::get('success'))
+        <div class="container alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-exclamation-triangle"></i> Success!</h5>
+            {{ $message }}
+        </div>
+    @endif
+    
     <!-- Breadcrumb Start -->
     <div class="container-fluid">
         <div class="row px-xl-5">
@@ -33,14 +42,7 @@
                 <div class="h-100 bg-light p-30">
                     <h3>{{ $product['name'] }}</h3>
                     <div class="d-flex mb-3">
-                        <div class="text-primary mr-2">
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star-half-alt"></small>
-                            <small class="far fa-star"></small>
-                        </div>
-                        <small class="pt-1">({{ $product['rating_count'] }} Reviews)</small>
+                        @include('partials.stars', ["rating" => $product['rating'], "rating_count" => $product['rating_count']])
                     </div>
                     <h3 class="font-weight-semi-bold mb-4">${{ $product->getPriceAfterDiscount() }}</h3>
                     <p class="mb-4">{{ $product['description'] }}</p>
@@ -174,22 +176,14 @@
                                     <div class="col-md-6">
                                         <h4 class="mb-4">{{ $product['rating_count'] }} review for
                                             {{ $product['name'] }}</h4>
-                                        <div class="media mb-4">
-                                            <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
-                                                style="width: 45px;">
-                                            <div class="media-body">
-                                                <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                                <div class="text-primary mb-2">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star-half-alt"></i>
-                                                    <i class="far fa-star"></i>
-                                                </div>
-                                                <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam
-                                                    ipsum
-                                                    et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
+                                        <div class="d-flex flex-column media mb-4">
+                                            @foreach($reviews as $review)
+                                            <div class="media-body mb-2">
+                                                <h6>{{ $review->user->name }}<small> - <i>{{ $review->getFormattedDateTime() }}</i></small></h6>
+                                                @include('partials.review-stars', ["rating" => $review->rating])
+                                                <p>{{ $review['reveiw'] }}</p>
                                             </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="col-md-6">
