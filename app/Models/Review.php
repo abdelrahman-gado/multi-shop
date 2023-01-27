@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +14,7 @@ class Review extends Model
 
     public static $rules = [
         'review' => 'required',
-        'rating' => 'required|decimal:1|min:0|max:5',
+        'rating' => 'required|numeric|min:0|max:5',
         'name' => 'required',
         'email' => 'required|email'
     ];
@@ -26,6 +27,11 @@ class Review extends Model
 
     function user() {
         return $this->belongsTo(User::class);
+    }
+
+    function getFormattedDateTime() {
+        $datetime = strtotime($this->created_at);
+        return date('d-M-Y H:i a', $datetime);
     }
 
 }
