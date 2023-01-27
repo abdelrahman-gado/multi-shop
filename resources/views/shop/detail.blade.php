@@ -203,6 +203,9 @@
                                                 <input type="number" class="form-control flex-grow-1" id="rating"
                                                     name="rating" min="0" max="5" step="0.5"
                                                     onchange="showRating()" value="0" required>
+                                                @error('rating')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
                                                 <div class="text-primary" id="div-rating">
                                                     <i class="far fa-star"></i>
                                                     <i class="far fa-star"></i>
@@ -215,16 +218,25 @@
                                             <div class="form-group">
                                                 <label for="message">Your Review *</label>
                                                 <textarea id="message" cols="30" rows="5" class="form-control" name="review" required>{{ old('review') }}</textarea>
+                                                @error('review')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label for="name">Your Name *</label>
                                                 <input type="text" class="form-control" id="name" name="name"
                                                     value="{{ old('name', auth()->user()->name) }}" required>
+                                                @error('name')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label for="email">Your Email *</label>
                                                 <input type="email" class="form-control" id="email" name="email"
                                                     value="{{ old('email', auth()->user()->email) }}" required>
+                                                @error('email')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                             <div class="form-group mb-0">
                                                 <input type="submit" value="Leave Your Review"
