@@ -171,14 +171,7 @@
                                     <h5>${{ $product->getPriceAfterDiscount() }}</h5>
                                     <h6 class="text-muted ml-2"><del>${{ $product['price'] }}</del></h6>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small>({{ $product['rating_count'] }})</small>
-                                </div>
+                                @include('partials.stars', ["rating" => $product['rating'], "rating_count" => $product['rating_count']])
                             </div>
                         </div>
                     </div>
@@ -245,14 +238,7 @@
                                     <h5>${{ $product->getPriceAfterDiscount() }}</h5>
                                     <h6 class="text-muted ml-2"><del>${{ $product['price'] }}</del></h6>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small>({{ $product['rating_count'] }})</small>
-                                </div>
+                                @include('partials.stars', ["rating" => $product['rating'], "rating_count" => $product['rating_count']])
                             </div>
                         </div>
                     </div>
