@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\HomeController;
@@ -38,6 +39,7 @@ Route::middleware(['auth', 'can:is_admin'])->prefix("/admin")->group(function ()
     Route::resource('users', UserController::class);
     Route::resource('orders', OrderController::class);
     Route::resource('sizes', SizeController::class);
+    Route::resource('colors', ColorController::class);
 });
 
 
