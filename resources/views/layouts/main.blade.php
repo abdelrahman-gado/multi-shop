@@ -205,11 +205,15 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Newsletter</h5>
                         <p>Duo stet tempor ipsum sit amet magna ipsum tempor est</p>
-                        <form action="">
+                        <form action="{{ url('/newsletter') }}" method="POST">
+                            @csrf
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Your Email Address">
+                                <input type="email" name="email" class="form-control" placeholder="Your Email Address" required>
+                                @error('email')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary">Sign Up</button>
+                                    <button class="btn btn-primary" type="submit">Sign Up</button>
                                 </div>
                             </div>
                         </form>
